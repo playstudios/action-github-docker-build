@@ -1,8 +1,7 @@
 {
-  "name": "typescript-action",
+  "name": "action-github-docker-build",
   "version": "0.0.0",
-  "private": true,
-  "description": "TypeScript template action",
+  "description": "Build and push docker images",
   "main": "lib/main.js",
   "scripts": {
     "build": "tsc",
@@ -15,22 +14,23 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/actions/typescript-action.git"
+    "url": "git+https://github.com/playstudios/action-github-docker-build.git"
   },
   "keywords": [
     "actions",
     "node",
     "setup"
   ],
-  "author": "YourNameOrOrganization",
+  "author": "PlayStudios",
   "license": "MIT",
   "dependencies": {
-    "@actions/core": "^1.2.0"
+    "@actions/core": "^1.2.0",
+    "@actions/exec": "^1.0.1"
   },
   "devDependencies": {
     "@types/jest": "^24.0.23",
     "@types/node": "^12.7.12",
-    "@typescript-eslint/parser": "^2.8.0",
+    "@typescript-eslint/parser": "^2.10.0",
     "@zeit/ncc": "^0.20.5",
     "eslint": "^5.16.0",
     "eslint-plugin-github": "^2.0.0",
@@ -40,6 +40,6 @@
     "js-yaml": "^3.13.1",
     "prettier": "^1.19.1",
     "ts-jest": "^24.2.0",
-    "typescript": "^3.6.4"
+    "typescript": "^3.7.3"
   }
 }

@@ -1,10 +1,24 @@
-name: 'Your name here'
-description: 'Provide a description here'
-author: 'Your name or organization here'
+name: 'action-github-docker-build'
+description: 'Build and push docker images'
+author: 'PlayStudios'
 inputs:
-  myInput:              # change this
-    description: 'input description here'
-    default: 'default value if applicable'
+  repository:
+    required: true
+    description: 'The docker repository to push to'
+  tag:
+    required: true
+    description: 'The image tag. Recommended to use ${{ github.sha }}'
+  build_args:
+    required: false
+    description: 'Comma (,) separated list of environment variables to set as --build-arg'
+  dockerfile:
+    required: false
+    default: 'Dockerfile'
+    description: 'The Dockerfile to use'
+  build_context:
+    required: false
+    default: '.'
+    description: 'Docker build context'
 runs:
   using: 'node12'
   main: 'dist/index.js'
