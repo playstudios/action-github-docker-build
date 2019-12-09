@@ -2,9 +2,15 @@ name: 'action-github-docker-build'
 description: 'Build and push docker images'
 author: 'PlayStudios'
 inputs:
-  repository:
+  registry:
     required: true
-    description: 'The docker repository to push to'
+    description: 'The docker registry to push to'
+  username:
+    required: false
+    description: 'The username to use for logging into the docker registry'
+  password:
+    required: false
+    description: 'The password to use for logging into the docker registry'
   tag:
     required: true
     description: 'The image tag. Recommended to use ${{ github.sha }}'

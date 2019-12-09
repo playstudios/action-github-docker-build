@@ -20,6 +20,18 @@ async function dockerVersion(): Promise<void> {
   await exec.exec('docker', ['--version'])
 }
 
+async function dockerLogin(username: string, password: string): Promise<void> {
+  core.setSecret(password)
+  await exec.exec('docker', [
+    'login',
+    '-u',
+    username,
+    '-p',
+    password,
+    core.getInput('registry')
+  ])
+}
+
 async function dockerBuild(args: string[]): Promise<void> {
   await exec.exec('docker', ['build', ...args])
 }
@@ -29,9 +41,14 @@ async function dockerPush(tag: string): Promise<void> {
 }
 
 async function run(): Promise<void> {
-  const tag = [core.getInput('repository'), core.getInput('tag')].join(':')
+  const username = core.getInput('username')
+  const password = core.getInput('password')
+  const tag = [core.getInput('registry'), core.getInput('tag')].join(':')
 
   await dockerVersion()
+  if (username && password) {
+    await dockerLogin(username, password)
+  }
   await dockerBuild([
     ...arg('-f', core.getInput('dockerfile')),
     ...arg('-t', tag),
