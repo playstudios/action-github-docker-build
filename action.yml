@@ -13,7 +13,7 @@ inputs:
     description: 'The password to use for logging into the docker registry'
   tag:
     required: true
-    description: 'The image tag. Recommended to use ${{ github.sha }}'
+    description: 'The image tag. Recommended to use github.sha'
   build_args:
     required: false
     description: 'Comma (,) separated list of environment variables to set as --build-arg'
@@ -27,4 +27,4 @@ inputs:
     description: 'Docker build context'
 runs:
   using: 'node12'
-  main: 'dist/index.js'
+  main: 'lib/main.js'
