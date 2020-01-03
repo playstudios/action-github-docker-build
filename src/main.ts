@@ -8,9 +8,12 @@ function arg(name: string, value: string): string[] {
   return [name, value]
 }
 
-function argFromEnvArray(name: string, envVars: string[]): string[] {
+export function argFromEnvArray(name: string, envVars: string[]): string[] {
   let args: string[] = []
   for (const e of envVars) {
+    if (e === '') {
+      continue
+    }
     args = args.concat(name, `${e}=${process.env[e] || ''}`)
   }
   return args
